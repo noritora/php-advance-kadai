@@ -84,19 +84,23 @@ if (isset($_GET['id'])) {
             <form action="update.php?id=<?= $_GET['id'] ?>" method="post" class="registration-form">
                 <div>
                     <label for="book_code">書籍コード</label>
-                    <input type="number" id="book_code" name="book_code" required>
+                    <input type="number" id="book_code" name="book_code" required value="<?= $book['book_code'] ?>">
                     <label for="book_name">書籍名</label>
-                    <input type="text" id="book_name" name="book_name" required>
+                    <input type="text" id="book_name" name="book_name" required value="<?= $book['book_name'] ?>">
                     <label for="price">単価</label>
-                    <input type="number" id="price" name="price" required>
+                    <input type="number" id="price" name="price" required value="<?= $book['price'] ?>">
                     <label for="stock_quantity">在庫数</label>
-                    <input type="number" id="stock_quantity" name="stock_quantity" required>
+                    <input type="number" id="stock_quantity" name="stock_quantity" required value="<?= $book['stock_quantity'] ?>">
                     <label for="genre-code">ジャンルコード</label>
                     <select id="genre_code" name="genre_code" required>
                         <option disabled selected value>選択してください</option>
                         <?php
                         foreach ($genre_codes as $genre_code) {
+                            if ($genre_code === $book['genre_code']) {
+                                echo "<option value='{$genre_code}' selected>{$genre_code}</option>";
+                            } else {
                             echo "<option value='{$genre_code}'>{$genre_code}</option>";
+                            }
                         }
                         ?>
                     </select>
